@@ -4,10 +4,9 @@ import { existsSync, createReadStream } from 'fs';
 import parse = require('csv-parse');
 import { Connection } from 'typeorm';
 import { generate } from 'shortid';
-
+import { error } from 'winston';
 import { saveDataElements } from './saveDataElements';
 
-const { error } = console;
 const exit = process.exit;
 
 export const readFile = async (

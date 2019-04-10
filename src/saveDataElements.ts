@@ -1,5 +1,6 @@
 import { Connection } from 'typeorm';
 import { Products } from './models';
+import { info } from 'winston';
 
 export const saveDataElements = async (
   connection: Connection,
@@ -13,5 +14,5 @@ export const saveDataElements = async (
   product.dataElementCode = dataElementCode;
 
   const savedProduct = await connection.getRepository(Products).save(product);
-  console.log(savedProduct);
+  info(savedProduct);
 };

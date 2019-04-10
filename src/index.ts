@@ -2,15 +2,18 @@ import 'reflect-metadata';
 
 import { join } from 'path';
 import { existsSync } from 'fs';
+import { add, transports, error } from 'winston';
 
 import { loadConfig } from './config';
 import { connectToDatabase } from './datasource';
 import { readFile } from './readFile';
 
-const { error } = console;
 const exit = process.exit;
 
 const main = async () => {
+  const console = new transports.Console();
+  add(console);
+
   const envPath = join(__dirname, '..', '.env');
 
   if (!existsSync(envPath)) {
