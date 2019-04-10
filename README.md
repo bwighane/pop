@@ -4,7 +4,7 @@ This is a script that loads products into ADX from a CSV file.
 
 ## Dependencies
 
-The mediator uses a number of projects and dependencies to work properly:
+The script uses a number of projects and dependencies to work properly:
 
 - [NodeJS > v10.12](https://nodejs.org/en/download/ "node")
 - [MySQL v5.5](https://dev.mysql.com/downloads/mysql/ "mysql")
