@@ -1,0 +1,47 @@
+{
+  "name": "adx-cron-job",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kuunika/adx-cron-job-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kuunika/adx-cron-job-/issues"
+  },
+  "homepage": "https://github.com/Kuunika/adx-cron-job-#readme",
+  "dependencies": {
+    "@auth0/angular-jwt": "^2.1.0",
+    "@types/csv-parse": "^1.1.12",
+    "cron": "^1.7.0",
+    "csv-parse": "^4.4.0",
+    "dotenv": "^7.0.0",
+    "mysql": "^2.16.0",
+    "reflect-metadata": "^0.1.13",
+    "shortid": "^2.2.14",
+    "typeorm": "^0.2.16",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/cron": "^1.7.0",
+    "@types/dotenv": "^6.1.1",
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.13.2",
+    "@types/shortid": "0.0.29",
+    "@types/winston": "^2.4.4",
+    "jest": "^24.7.0",
+    "ts-node": "^8.0.3",
+    "typedoc": "^0.14.2"
+  }
+}
