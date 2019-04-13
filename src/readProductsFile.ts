@@ -5,26 +5,24 @@ import parse = require('csv-parse');
 import { Connection } from 'typeorm';
 import { generate } from 'shortid';
 import { error } from 'winston';
-import { saveDataElements } from './saveDataElements';
+import { saveProduct } from './saveProduct';
 
-const exit = process.exit;
-
-export const readFile = async (
+export const readProductsFile = async (
   config: DotenvParseOutput,
   connection: Connection
 ): Promise<void> => {
-  const dataElementFileName = config.DATA_ELEMENTS_FILE_NAME;
+  const productsFileName = config.PRODUCTS_FILE_NAME;
 
-  const dataElementsFilePath = join(
+  const productsFilePath = join(
     __dirname,
     '..',
     'data',
-    dataElementFileName
+    productsFileName
   );
 
-  if (!existsSync(dataElementsFilePath)) {
-    error('data elemets file does not exist');
-    exit(1);
+  if (!existsSync(productsFilePath)) {
+    error(`products file, "${productsFilePath}", does not exist`);
+    process.exit(1);
   }
 
   const parser = parse({ delimiter: ',' }, async (err, dataElements) => {
@@ -37,7 +35,7 @@ export const readFile = async (
     for (const dataElement of dataElements) {
       const [, openLMISproductCode, , dataDHIS2ElementCode] = dataElement;
 
-      await saveDataElements(
+      await saveProduct(
         connection,
         generate(),
         openLMISproductCode,
@@ -48,5 +46,5 @@ export const readFile = async (
     connection.close();
   });
 
-  await createReadStream(dataElementsFilePath).pipe(parser);
+  await createReadStream(productsFilePath).pipe(parser);
 };
