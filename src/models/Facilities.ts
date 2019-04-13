@@ -1,18 +1,18 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'Products' })
-export class Products {
+@Entity({ name: 'Facilities' })
+export class Facilities {
   @PrimaryGeneratedColumn()
   public id: number;
 
   @Column()
-  public productCode: string;
+  public facilityCode: string;
 
   @Column()
-  public dataElementCode: string;
+  public DHIS2OrganizationalUnitCode: string;
 
   @Column()
-  public openLMISCode: string;
+  public openLMISFaciliyCode: string;
 
   @Column()
   public createdAt: Date;

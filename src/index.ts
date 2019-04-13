@@ -6,9 +6,8 @@ import { add, transports, error } from 'winston';
 
 import { loadConfig } from './config';
 import { connectToDatabase } from './datasource';
-import { readFile } from './readFile';
-
-const exit = process.exit;
+import { readProductsFile } from './readProductsFile';
+import { readFacilitiesFile } from './readFacilitiesFile';
 
 const main = async () => {
   const console = new transports.Console();
@@ -18,13 +17,13 @@ const main = async () => {
 
   if (!existsSync(envPath)) {
     error(`Env file is require`);
-    exit(1);
+    process.exit(1);
   }
 
   const config = await loadConfig(envPath);
-  const connection = await connectToDatabase(config);
 
-  await readFile(config, connection);
+  await readProductsFile(config, await connectToDatabase(config, 'default'));
+  await readFacilitiesFile(config, await connectToDatabase(config, 'work'));
 };
 
 main();
