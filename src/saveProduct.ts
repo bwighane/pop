@@ -17,5 +17,8 @@ export const saveProduct = async (
   product.updatedAt = new Date(Date.now());
 
   const savedProduct = await connection.getRepository(Products).save(product);
-  info(savedProduct);
+
+  info(`created product: ${savedProduct.productCode}`);
+  console.log(JSON.stringify(savedProduct, undefined, 2));
+  console.log();
 };

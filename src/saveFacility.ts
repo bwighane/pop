@@ -13,9 +13,10 @@ export const saveFacility = async (
   facility.facilityCode = facilityCode;
   facility.DHIS2OrganizationalUnitCode = DHIS2OrganizationalUnitCode;
   facility.openLMISFaciliyCode = openLMISFacilityCode;
-  facility.createdAt = new Date(Date.now());
-  facility.updatedAt = new Date(Date.now());
 
-  const facilityProduct = await connection.getRepository(Facilities).save(facility);
-  info(facilityProduct);
+  const savedFacility = await connection.getRepository(Facilities).save(facility);
+
+  info(`created facility: ${savedFacility.facilityCode}`);
+  console.log(JSON.stringify(savedFacility, undefined, 2));
+  console.log();
 };
