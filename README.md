@@ -64,7 +64,7 @@ source data/schema.sql;
 Create a `.env` file with the contents of your .env.default file.
 
 ```sh
-# copy the .env.example to .env file
+# copy the .env.default to .env file
 cp .env.default .env
 ```
 
