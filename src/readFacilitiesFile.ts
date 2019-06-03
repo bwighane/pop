@@ -38,7 +38,7 @@ export const readFacilitiesFile = async (
     }
 
     await createReadStream(
-      join(__dirname, '..', 'data', config.OPEN_LMIS_FACILITIES_FILE_NAME)
+      join(__dirname, '..', 'data', config.OPEN_LMIS_FACILITIES_FILE_NAME || 'openlmisfacilitie.csv')
     ).pipe(
       parse(
         { delimiter: ',' },
