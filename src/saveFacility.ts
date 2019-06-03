@@ -12,7 +12,7 @@ export const saveFacility = async (
 
   facility.facilityCode = facilityCode;
   facility.DHIS2OrganizationalUnitCode = DHIS2OrganizationalUnitCode;
-  facility.openLMISFaciliyCode = openLMISFacilityCode;
+  facility.openLMISFacilityCode = openLMISFacilityCode;
 
   const savedFacility = await connection.getRepository(Facilities).save(facility);
 

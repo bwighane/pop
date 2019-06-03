@@ -12,7 +12,7 @@ export class Facilities {
   public DHIS2OrganizationalUnitCode: string;
 
   @Column()
-  public openLMISFaciliyCode: string;
+  public openLMISFacilityCode: string;
 
   @Column()
   public createdAt: Date;

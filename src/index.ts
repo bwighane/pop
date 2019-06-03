@@ -6,7 +6,7 @@ import { add, transports, format, error } from 'winston';
 
 import { loadConfig } from './config';
 import { connectToDatabase } from './datasource';
-import { readProductsFile } from './readProductsFile';
+// import { readProductsFile } from './readProductsFile';
 import { readFacilitiesFile } from './readFacilitiesFile';
 
 const consoleFormat = format.combine(
@@ -31,7 +31,7 @@ const main = async () => {
 
   const config = await loadConfig(envPath);
 
-  await readProductsFile(config, await connectToDatabase(config, 'default'));
+  // await readProductsFile(config, await connectToDatabase(config, 'default'));
   await readFacilitiesFile(config, await connectToDatabase(config, 'work'));
 };
 
