@@ -21,7 +21,7 @@ export const readFacilitiesFile = async (
   config: DotenvParseOutput,
   connection: Connection
 ): Promise<void> => {
-  const facilitiesFileName = config.FACILITIES_FILE_NAME;
+  const facilitiesFileName = config.FACILITIES_FILE_NAME || '../data/facilities.csv';
 
   const facilitiesFilePath = join(__dirname, '..', 'data', facilitiesFileName);
 

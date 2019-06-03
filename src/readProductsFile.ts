@@ -11,7 +11,7 @@ export const readProductsFile = async (
   config: DotenvParseOutput,
   connection: Connection
 ): Promise<void> => {
-  const productsFileName = config.PRODUCTS_FILE_NAME;
+  const productsFileName = config.PRODUCTS_FILE_NAME || '../data/products.csv';
 
   const productsFilePath = join(
     __dirname,
