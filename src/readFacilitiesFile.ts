@@ -21,7 +21,7 @@ export const readFacilitiesFile = async (
   config: DotenvParseOutput,
   connection: Connection
 ): Promise<void> => {
-  const facilitiesFileName = config.FACILITIES_FILE_NAME;
+  const facilitiesFileName = config.FACILITIES_FILE_NAME || '../data/facilities.csv';
 
   const facilitiesFilePath = join(__dirname, '..', 'data', facilitiesFileName);
 
@@ -38,7 +38,7 @@ export const readFacilitiesFile = async (
     }
 
     await createReadStream(
-      join(__dirname, '..', 'data', config.OPEN_LMIS_FACILITIES_FILE_NAME)
+      join(__dirname, '..', 'data', config.OPEN_LMIS_FACILITIES_FILE_NAME || 'openlmisfacilitie.csv')
     ).pipe(
       parse(
         { delimiter: ',' },
