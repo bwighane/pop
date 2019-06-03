@@ -35,11 +35,15 @@ export const readProductsFile = async (
     for (const dataElement of dataElements) {
       const [, openLMISproductCode, , dataDHIS2ElementCode] = dataElement;
 
+      if (openLMISproductCode === 'Code') {
+        continue;
+      }
+
       await saveProduct(
         connection,
         generate(),
-        openLMISproductCode,
-        dataDHIS2ElementCode
+        dataDHIS2ElementCode,
+        openLMISproductCode
       );
     }
 

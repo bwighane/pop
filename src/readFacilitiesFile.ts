@@ -37,33 +37,37 @@ export const readFacilitiesFile = async (
       return;
     }
 
-    await createReadStream(join(__dirname, '..', 'data', config.OPEN_LMIS_FACILITIES_FILE_NAME)).pipe(
-      parse({ delimiter: ',' }, async (e, openLMISfacilities) => {
-        if (e) {
-          error(e.message);
+    await createReadStream(
+      join(__dirname, '..', 'data', config.OPEN_LMIS_FACILITIES_FILE_NAME)
+    ).pipe(
+      parse(
+        { delimiter: ',' },
+        async (e, openLMISfacilities) => {
+          if (e) {
+            error(e.message);
+            connection.close();
+            return;
+          }
+
+          for (const facility of facilities) {
+            const [name, DHIS2OrganizationalUnitCode] = facility;
+
+            const openLMISFacilityCode = await getOpenLMISFacilityCode(
+              openLMISfacilities,
+              name
+            );
+
+            await saveFacility(
+              connection,
+              generate(),
+              DHIS2OrganizationalUnitCode,
+              openLMISFacilityCode
+            );
+
+          }
+
           connection.close();
-          return;
-        }
-
-        for (const facility of facilities) {
-          const [name, DHIS2OrganizationalUnitCode] = facility;
-
-          const openLMISFacilityCode = await getOpenLMISFacilityCode(
-            openLMISfacilities,
-            name
-          );
-
-          await saveFacility(
-            connection,
-            generate(),
-            DHIS2OrganizationalUnitCode,
-            openLMISFacilityCode
-          );
-
-        }
-
-        connection.close();
-      })
+        })
     );
   });
 
