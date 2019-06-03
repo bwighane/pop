@@ -32,7 +32,11 @@ Install all the dependencies
 npm install
 ```
 
-### step 3: database
+### step 3: Data files
+
+Copy data files to the data directory in the root directory.
+
+### step 4: database
 
 Create a schema in mysql database called `dhis2-integration-mediator`:
 
@@ -55,7 +59,7 @@ source data/schema.sql;
 \q
 ```
 
-### step 4:  environmental variables
+### step 5:  environmental variables
 
 Create a `.env` file with the contents of your .env.default file.
 
