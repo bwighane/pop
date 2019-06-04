@@ -7,7 +7,7 @@
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
- SET NAMES utf8 ;
+SET NAMES utf8 ;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,15 +21,22 @@
 
 DROP TABLE IF EXISTS `client`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `client` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
+SET character_set_client
+= utf8mb4 ;
+CREATE TABLE `client`
+(
+  `id` int
+(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar
+(255) NOT NULL,
+  `email` varchar
+(255) NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name_UNIQUE` (`name`)
+  PRIMARY KEY
+(`id`),
+  UNIQUE KEY `name_UNIQUE`
+(`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -39,16 +46,23 @@ CREATE TABLE `client` (
 
 DROP TABLE IF EXISTS `facilities`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `facilities` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `facilityCode` varchar(45) NOT NULL,
-  `DHIS2OrganizationalUnitCode` varchar(255) DEFAULT NULL,
-  `openLMISFacilityCode` varchar(255) DEFAULT NULL,
+SET character_set_client
+= utf8mb4 ;
+CREATE TABLE `facilities`
+(
+  `id` int
+(11) NOT NULL AUTO_INCREMENT,
+  `facilityCode` varchar
+(45) NOT NULL,
+  `DHIS2OrganizationalUnitCode` varchar
+(255) DEFAULT NULL,
+  `openLMISFacilityCode` varchar
+(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2022 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY
+(`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5578 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -57,14 +71,21 @@ CREATE TABLE `facilities` (
 
 DROP TABLE IF EXISTS `failqueue`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `failqueue` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `productId` int(11) NOT NULL,
-  `migrationId` int(11) NOT NULL,
-  `attempts` int(11) NOT NULL,
+SET character_set_client
+= utf8mb4 ;
+CREATE TABLE `failqueue`
+(
+  `id` int
+(11) NOT NULL AUTO_INCREMENT,
+  `productId` int
+(11) NOT NULL,
+  `migrationId` int
+(11) NOT NULL,
+  `attempts` int
+(11) NOT NULL,
   `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY
+(`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=317 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -74,9 +95,12 @@ CREATE TABLE `failqueue` (
 
 DROP TABLE IF EXISTS `migration`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `migration` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+SET character_set_client
+= utf8mb4 ;
+CREATE TABLE `migration`
+(
+  `id` int
+(11) NOT NULL AUTO_INCREMENT,
   `uploadedAt` datetime DEFAULT NULL,
   `structureValidatedAt` datetime DEFAULT NULL,
   `structureFailedValidationAt` datetime DEFAULT NULL,
@@ -85,13 +109,18 @@ CREATE TABLE `migration` (
   `valuesValidatedAt` datetime DEFAULT NULL,
   `valuesFailedValidationAt` datetime DEFAULT NULL,
   `reportDispatchedAt` datetime DEFAULT NULL,
-  `totalMigratedElements` int(11) DEFAULT NULL,
-  `totalDataElements` int(11) DEFAULT NULL,
-  `totalFailedElements` int(11) DEFAULT NULL,
+  `totalMigratedElements` int
+(11) DEFAULT NULL,
+  `totalDataElements` int
+(11) DEFAULT NULL,
+  `totalFailedElements` int
+(11) DEFAULT NULL,
   `migrationCompletedAt` datetime DEFAULT NULL,
-  `clientId` int(10) NOT NULL,
+  `clientId` int
+(10) NOT NULL,
   `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY
+(`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -101,20 +130,32 @@ CREATE TABLE `migration` (
 
 DROP TABLE IF EXISTS `migrationdataelements`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `migrationdataelements` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `migrationId` int(11) NOT NULL,
-  `productId` int(11) NOT NULL,
-  `facilityId` int(11) NOT NULL,
-  `value` int(11) NOT NULL,
-  `dataElementCode` varchar(255) NOT NULL,
-  `organizationUnitCode` varchar(255) NOT NULL,
-  `isProcessed` tinyint(1) NOT NULL,
+SET character_set_client
+= utf8mb4 ;
+CREATE TABLE `migrationdataelements`
+(
+  `id` int
+(11) NOT NULL AUTO_INCREMENT,
+  `migrationId` int
+(11) NOT NULL,
+  `productId` int
+(11) NOT NULL,
+  `facilityId` int
+(11) NOT NULL,
+  `value` int
+(11) NOT NULL,
+  `dataElementCode` varchar
+(255) NOT NULL,
+  `organizationUnitCode` varchar
+(255) NOT NULL,
+  `isProcessed` tinyint
+(1) NOT NULL,
   `migratedAt` datetime DEFAULT NULL,
-  `reportingPeriod` varchar(255) NOT NULL,
+  `reportingPeriod` varchar
+(255) NOT NULL,
   `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY
+(`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=352 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -124,16 +165,23 @@ CREATE TABLE `migrationdataelements` (
 
 DROP TABLE IF EXISTS `products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `products` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `productCode` varchar(45) NOT NULL,
-  `dataElementCode` varchar(45) NOT NULL,
-  `openLMISCode` varchar(45) NOT NULL,
+SET character_set_client
+= utf8mb4 ;
+CREATE TABLE `products`
+(
+  `id` int
+(11) NOT NULL AUTO_INCREMENT,
+  `productCode` varchar
+(45) NOT NULL,
+  `dataElementCode` varchar
+(45) NOT NULL,
+  `openLMISCode` varchar
+(45) NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1361 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY
+(`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4081 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -142,14 +190,21 @@ CREATE TABLE `products` (
 
 DROP TABLE IF EXISTS `validationfailures`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `validationfailures` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `migrationId` int(11) NOT NULL,
-  `reason` varchar(255) NOT NULL,
-  `fileName` varchar(45) DEFAULT NULL,
+SET character_set_client
+= utf8mb4 ;
+CREATE TABLE `validationfailures`
+(
+  `id` int
+(11) NOT NULL AUTO_INCREMENT,
+  `migrationId` int
+(11) NOT NULL,
+  `reason` varchar
+(255) NOT NULL,
+  `fileName` varchar
+(45) DEFAULT NULL,
   `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY
+(`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -162,4 +217,4 @@ CREATE TABLE `validationfailures` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-03 10:22:56
+-- Dump completed on 2019-06-04 10:31:10
