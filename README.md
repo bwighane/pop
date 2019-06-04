@@ -6,8 +6,8 @@ This is a script that loads products into ADX from a CSV file.
 
 The script uses a number of projects and dependencies to work properly:
 
-- [NodeJS > v10.12](https://nodejs.org/en/download/ "node")
-- [MySQL v5.5](https://dev.mysql.com/downloads/mysql/ "mysql")
+-   [NodeJS > v8.0.16](https://nodejs.org/en/download/ 'node')
+-   [MySQL v5.5](https://dev.mysql.com/downloads/mysql/ 'mysql')
 
 ## Installation
 
@@ -55,11 +55,20 @@ use `dhis2-integration-mediator`;
 # load database structure
 source data/schema.sql;
 
+# create the database
+CREATE DATABASE `dhis2-integration-mediator-test`;
+
+# select the created database
+use `dhis2-integration-mediator-test`;
+
+# load database structure
+source data/schema.sql;
+
 # exist from mysql
 \q
 ```
 
-### step 5:  environmental variables
+### step 5: environmental variables
 
 Create a `.env` file with the contents of your .env.default file.
 
