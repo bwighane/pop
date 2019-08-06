@@ -17,12 +17,11 @@ const getOpenLMISFacilityCode = (records, name) => {
   return undefined;
 };
 
-export const readFacilitiesFile = async (
+export const readOpenLmisFacilitiesFile = async (
   config: DotenvParseOutput,
   connection: Connection
 ): Promise<void> => {
   const facilitiesFileName = config.FACILITIES_FILE_NAME || '../data/facilities.csv';
-
   const facilitiesFilePath = join(__dirname, '..', 'data', facilitiesFileName);
 
   if (!existsSync(facilitiesFilePath)) {
@@ -61,7 +60,8 @@ export const readFacilitiesFile = async (
               connection,
               generate(),
               DHIS2OrganizationalUnitCode,
-              openLMISFacilityCode
+              openLMISFacilityCode,
+              undefined
             );
 
           }

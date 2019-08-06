@@ -7,13 +7,11 @@ import { generate } from 'shortid';
 import { error } from 'winston';
 import { saveProduct } from './saveProduct';
 
-
-export const readOpenlmisProductsFile = async (
+export const readDhamisProductsFile = async (
   config: DotenvParseOutput,
   connection: Connection
 ): Promise<void> => {
-
-  const productsFileName = config.PRODUCTS_FILE_NAME || '../data/products.csv';
+  const productsFileName = '../data/artdataelements.csv';
 
   const productsFilePath = join(
     __dirname,
@@ -27,17 +25,17 @@ export const readOpenlmisProductsFile = async (
     process.exit(1);
   }
 
-  const parser = parse({ delimiter: ',' }, async (err, productts) => {
+  const parser = parse({ delimiter: ',' }, async (err, products) => {
     if (err) {
       error(err.message);
       connection.close();
       return;
     }
 
-    for (const dataElement of productts) {
-      const [, openLMISproductCode, , dataDHIS2ElementCode] = dataElement;
+    for (const product of products) {
+      const [, dhamisCode, , dataDHIS2ElementCode] = product;
 
-      if (!openLMISproductCode || openLMISproductCode === 'Code') {
+      if (!dhamisCode) {
         continue;
       }
 
@@ -45,12 +43,12 @@ export const readOpenlmisProductsFile = async (
         connection,
         generate(),
         dataDHIS2ElementCode,
-        openLMISproductCode,
-        undefined
+        undefined,
+        dhamisCode
       );
     }
 
-    await connection.close();
+    connection.close();
   });
 
   await createReadStream(productsFilePath).pipe(parser);

@@ -15,6 +15,9 @@ export class Facilities {
   public openLMISFacilityCode: string;
 
   @Column()
+  public dhamisFacilityCode: string;
+
+  @Column()
   public createdAt: Date;
 
   @Column()

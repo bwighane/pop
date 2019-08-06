@@ -15,6 +15,9 @@ export class Products {
   public openLMISCode: string;
 
   @Column()
+  public dhamisCode: string;
+
+  @Column()
   public createdAt: Date;
 
   @Column()

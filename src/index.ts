@@ -6,8 +6,12 @@ import { add, transports, format, error } from 'winston';
 
 import { loadConfig } from './config';
 import { connectToDatabase } from './datasource';
-import { readProductsFile } from './readProductsFile';
-import { readFacilitiesFile } from './readFacilitiesFile';
+import { readOpenlmisProductsFile } from './readProductsFile';
+import { readOpenLmisFacilitiesFile } from './readFacilitiesFile';
+import { readDhamisProductsFile } from './readDhamisProductsFile';
+import { readDhamisFacilitiesFile } from './readDhamisFacilitiesFile';
+
+import { truncate } from './truncate';
 
 const consoleFormat = format.combine(
   format.colorize({ all: true }),
@@ -31,8 +35,35 @@ const main = async () => {
 
   const config = await loadConfig(envPath);
 
-  await readProductsFile(config, await connectToDatabase(config, 'default'));
-  await readFacilitiesFile(config, await connectToDatabase(config, 'work'));
+  await truncate(
+    await connectToDatabase(config, 'Truncate_Products'),
+    'Products'
+  );
+
+  await truncate(
+    await connectToDatabase(config, 'Truncate_Facilities'),
+    'Facilities'
+  );
+
+  await readOpenlmisProductsFile(
+    config,
+    await connectToDatabase(config, 'OpenLMIS_Products')
+  );
+
+  await readOpenLmisFacilitiesFile(
+    config,
+    await connectToDatabase(config, 'OpenLMIS_Facilities')
+  );
+
+  await readDhamisProductsFile(
+    config,
+    await connectToDatabase(config, 'dhamis_Products')
+  );
+
+  await readDhamisFacilitiesFile(
+    config,
+    await connectToDatabase(config, 'dhamis_Facilities')
+  );
 };
 
 main();
