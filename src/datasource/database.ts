@@ -1,22 +1,31 @@
 import { Products, Facilities } from './../models';
-import { DotenvParseOutput } from 'dotenv';
-
 import { ConnectionOptions, createConnection, Connection } from 'typeorm';
 
 export const connectToDatabase = async (
-  config: DotenvParseOutput,
-  name: string
-): Promise<Connection> => {
+  name: string = 'default'
+): Promise<any | Connection> => {
+  const {
+    DATABASE = 'dhis2-integration-mediator',
+    DATABASE_HOST = 'localhost',
+    DATABASE_PASSWORD = 'root',
+    DATABASE_PORT = 3306,
+    DATABASE_USERNAME = 'root',
+  } = process.env;
+
   const options: ConnectionOptions = {
-    name: name || 'default',
-    database: config.DATABASE || 'dhis2-integration-mediator',
+    name,
+    database: DATABASE,
     entities: [Facilities, Products],
-    host: config.DATABASE_HOST || 'localhost',
-    password: config.DATABASE_PASSWORD || '',
-    port: Number(config.DATABASE_PORT) || 3306,
+    host: DATABASE_HOST,
+    password: DATABASE_PASSWORD,
+    port: Number(DATABASE_PORT),
     type: 'mysql',
-    username: config.DATABASE_USERNAME || 'root',
+    username: DATABASE_USERNAME,
   };
 
-  return createConnection(options);
+  try {
+    return createConnection(options);
+  } catch (error) {
+    console.log(error.message);
+  }
 };

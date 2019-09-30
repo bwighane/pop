@@ -1,4 +1,3 @@
-import { DotenvParseOutput } from 'dotenv';
 import { join } from 'path';
 import { existsSync, createReadStream } from 'fs';
 import parse = require('csv-parse');
@@ -7,19 +6,19 @@ import { generate } from 'shortid';
 import { error } from 'winston';
 import { saveProduct } from './saveProduct';
 
-
 export const readOpenlmisProductsFile = async (
-  config: DotenvParseOutput,
   connection: Connection
 ): Promise<void> => {
 
-  const productsFileName = config.PRODUCTS_FILE_NAME || '../data/products.csv';
+  const {
+    PRODUCTS_FILE_NAME = '../data/products.csv',
+  } = process.env;
 
   const productsFilePath = join(
     __dirname,
     '..',
     'data',
-    productsFileName
+    PRODUCTS_FILE_NAME
   );
 
   if (!existsSync(productsFilePath)) {
@@ -27,14 +26,14 @@ export const readOpenlmisProductsFile = async (
     process.exit(1);
   }
 
-  const parser = parse({ delimiter: ',' }, async (err, productts) => {
+  const parser = parse({ delimiter: ',' }, async (err, products) => {
     if (err) {
       error(err.message);
       connection.close();
       return;
     }
 
-    for (const dataElement of productts) {
+    for (const dataElement of products) {
       const [, openLMISproductCode, , dataDHIS2ElementCode] = dataElement;
 
       if (!openLMISproductCode || openLMISproductCode === 'Code') {

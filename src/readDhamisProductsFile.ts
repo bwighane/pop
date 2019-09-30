@@ -1,4 +1,3 @@
-import { DotenvParseOutput } from 'dotenv';
 import { join } from 'path';
 import { existsSync, createReadStream } from 'fs';
 import parse = require('csv-parse');
@@ -8,9 +7,9 @@ import { error } from 'winston';
 import { saveProduct } from './saveProduct';
 
 export const readDhamisProductsFile = async (
-  config: DotenvParseOutput,
   connection: Connection
 ): Promise<void> => {
+
   const productsFileName = '../data/artdataelements.csv';
 
   const productsFilePath = join(
